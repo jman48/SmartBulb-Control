@@ -23,13 +23,16 @@ public class Main {
 		boolean complete = false;
 		Scanner in = new Scanner(System.in);
 		
-		
 		while(!complete) {
+			System.out.println("");
 			System.out.println("Hello Commander....");
 			System.out.println("Enter in code");
 			System.out.println("1: Light on");
 			System.out.println("2: Light off");
-			System.out.println("3: Exit");
+			System.out.println("3: Warm White");
+			System.out.println("4: Disco Mode!");
+			System.out.println("5: Set Brightness");
+			System.out.println("6: Exit");
 			
 			int resp = in.nextInt();
 			
@@ -41,8 +44,23 @@ public class Main {
 				sendOrder(Command.off);
 				break;
 			case 3:
+				sendOrder(Command.warmWhite);
+				break;
+			case 4:
+				sendOrder(Command.discoMode);
+				break;
+			case 5:
+				System.out.println("\nEnter in a value for brightness (2 - 27)");
+				int brightness = in.nextInt();
+				if(brightness > 27 || brightness < 2)
+					System.out.println("ERROR: You did not enter a value between 2 - 27");
+				else
+					sendOrder(Command.setBrightness(brightness));
+				break;
+			case 6:
 				complete = true;
 				System.out.println("Exiting.....");
+				in.close();
 				break;
 			}
 		}   
